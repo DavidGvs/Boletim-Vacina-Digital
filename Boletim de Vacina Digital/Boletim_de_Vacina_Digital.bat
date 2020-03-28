@@ -1,0 +1,1 @@
+java --module-path %PATH_TO_FX% --add-modules javafx.controls,javafx.fxml -cp Boletim_de_Vacina_Digital.jar application.Main
