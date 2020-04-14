@@ -84,8 +84,19 @@ public class ControladorMainView implements Initializable {
 			lblErro.setVisible(true);
 			lblErro.setText("Alguns dados não foram inseridos.\nTente Novamente!");
 		} else if (rbFeminino.isSelected() && smbGravida.getText().equals("Já esteve grávida?")) {
+			lblErro.setVisible(true);
 			lblErro.setText("Indique se já esteve grávida!");
-		}else {
+		} else if (dpIdade.getValue().getYear() > LocalDate.now().getYear()){
+			lblErro.setVisible(true);
+			lblErro.setText("A data está incorreta. \nTente Novamente!");
+		} else if (dpIdade.getValue().getYear() == LocalDate.now().getYear() && dpIdade.getValue().getMonth().getValue() > LocalDate.now().getMonth().getValue()) {
+			lblErro.setVisible(true);
+			lblErro.setText("A data está incorreta. \nTente Novamente!");
+		} else if (dpIdade.getValue().getYear() == LocalDate.now().getYear() && dpIdade.getValue().getMonth().getValue() == LocalDate.now().getMonth().getValue() && 
+				dpIdade.getValue().getDayOfMonth() > LocalDate.now().getDayOfMonth()) {
+			lblErro.setVisible(true);
+			lblErro.setText("A data está incorreta. \nTente Novamente!");
+		} else {
 			lblErro.setVisible(false);
 			loadView("/gui/EsquemaVacinal.fxml", (ControladorVacinas controller) -> {
 				controller.atualizarNome(txtNome.getText());
